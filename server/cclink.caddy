@@ -1,0 +1,9 @@
+# cclink relay (container in /opt/cclink). Own file so homestream's deploy never touches it.
+# sslip.io name: no DNS record needed, still a real certificate.
+cclink.87-99-134-93.sslip.io {
+	encode zstd gzip
+	request_body {
+		max_size 32KB
+	}
+	reverse_proxy cclink:8080
+}

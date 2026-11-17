@@ -1,0 +1,18 @@
+# Deployed at /opt/cclink on hetzner. Secrets live in /opt/cclink/cclink.env (TOKENS hashes, NTFY_TOPIC), never in git.
+services:
+  cclink:
+    build: .
+    container_name: cclink
+    restart: unless-stopped
+    env_file: cclink.env
+    read_only: true
+    cap_drop: [ALL]
+    security_opt: ["no-new-privileges:true"]
+    mem_limit: 128m
+    pids_limit: 64
+    volumes:
+      - ./data:/data
+    networks: [homestream_default]
+networks:
+  homestream_default:
+    external: true

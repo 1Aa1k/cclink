@@ -1,0 +1,4 @@
+cclink.env
+data/
+*.token
+__pycache__/
